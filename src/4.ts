@@ -5,11 +5,7 @@
 //який повертає значення властивості signature.
 
 class Key {
-  private signature: number;
-
-  constructor() {
-    this.signature = Math.random();
-  }
+  constructor(private signature: number = Math.random()) {}
 
   getSignature(): number {
     return this.signature;
@@ -19,11 +15,8 @@ class Key {
 // властивості key. Клас Person повинен мати метод getKey, який повертає збережений ключ.
 
 class Person {
-  private key: Key;
+  constructor(private key: Key) {}
 
-  constructor(key: Key) {
-    this.key = key;
-  }
   getKey(): Key {
     return this.key;
   }
@@ -35,12 +28,9 @@ class Person {
 
 abstract class House {
   protected door: boolean = false;
-  protected key: Key;
   protected tenants: Person[] = [];
 
-  constructor(key: Key) {
-    this.key = key;
-  }
+  constructor(protected key: Key) {}
 
   comeIn(person: Person): void {
     if (this.door) {
